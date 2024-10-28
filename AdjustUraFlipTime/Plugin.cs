@@ -4,16 +4,16 @@ using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using BepInEx.Configuration;
-using ModTemplate.Plugins;
+using AdjustUraFlipTime.Plugins;
 using UnityEngine;
 using System.Collections;
 
-namespace ModTemplate
+namespace AdjustUraFlipTime
 {
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, ModName, MyPluginInfo.PLUGIN_VERSION)]
     public class Plugin : BasePlugin
     {
-        public const string ModName = "ModTemplate";
+        public const string ModName = "AdjustUraFlipTime";
 
         public static Plugin Instance;
         private Harmony _harmony = null;
@@ -21,7 +21,6 @@ namespace ModTemplate
 
 
         public ConfigEntry<bool> ConfigEnabled;
-        public ConfigEntry<string> ConfigSongTitleLanguageOverride;
         public ConfigEntry<float> ConfigFlipInterval;
 
 
@@ -45,11 +44,6 @@ namespace ModTemplate
                 true,
                 "Enables the mod.");
 
-            ConfigSongTitleLanguageOverride = Config.Bind("General",
-                "SongTitleLanguageOverride",
-                "JP",
-                "Sets the song title to the selected language. (JP, EN, FR, IT, DE, ES, TW, CN, KO)");
-
             ConfigFlipInterval = Config.Bind("General",
                 "FlipInterval",
                 3f,
@@ -65,9 +59,7 @@ namespace ModTemplate
             {
                 bool result = true;
                 // If any PatchFile fails, result will become false
-                result &= PatchFile(typeof(SwapJpEngTitlesPatch));
                 result &= PatchFile(typeof(AdjustUraFlipTimePatch));
-                SwapJpEngTitlesPatch.SetOverrideLanguages();
                 if (result)
                 {
                     Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} is loaded!");
