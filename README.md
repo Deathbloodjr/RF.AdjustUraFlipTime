@@ -1,5 +1,6 @@
 # RF.AdjustUraFlipTime
- A Rhythm Festival mod template for developing new mods.
+ A Rhythm Festival mod that adjusts the time to flip between Oni and Ura on the song select menu.\
+ This was made to make it easier to tell if a song has an Ura chart, as well as seeing what difficulty the chart is. 
  
 # Requirements
  Visual Studio 2022 or newer\
