@@ -15,3 +15,9 @@
  
  Attempt to build the project, or copy the .csproj.user file from the Resources file to the same directory as the .csproj file.\
  Edit the .csproj.user file and place your Rhythm Festival file location in the "GameDir" variable.
+
+
+# Links 
+ [My Other Rhythm Festival Mods](https://docs.google.com/spreadsheets/d/1xY_WANKpkE-bKQwPG4UApcrJUG5trrNrbycJQSOia0c)\
+ [My Taiko Discord Server](https://discord.gg/6Bjf2xP)
+ 
