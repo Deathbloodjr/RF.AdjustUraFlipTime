@@ -21,7 +21,7 @@ namespace AdjustUraFlipTime.Plugins
         [HarmonyPrefix]
         public static bool UiSongCenterButton_TryStartUraSequence_Prefix(UiSongCenterButton __instance)
         {
-            if (__instance.Item != null)
+            if (__instance.Item is not null)
             {
                 if (__instance.Item.Stars[(int)EnsoData.EnsoLevelType.Ura] != 0)
                 {
