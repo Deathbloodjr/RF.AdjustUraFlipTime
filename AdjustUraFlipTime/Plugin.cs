@@ -43,14 +43,17 @@ namespace AdjustUraFlipTime
             }
         }
 
-        private void SetupConfig(ConfigFile config, string saveFolder)
+        private void SetupConfig(ConfigFile config, string saveFolder, bool isSaveManager = false)
         {
             var dataFolder = Path.Combine("BepInEx", "data", ModName);
 
-            ConfigEnabled = config.Bind("General",
-                "Enabled",
-                true,
-                "Enables the mod.");
+            if (!isSaveManager)
+            {
+                ConfigEnabled = config.Bind("General",
+                   "Enabled",
+                   true,
+                   "Enables the mod.");
+            }
 
             ConfigFlipInterval = config.Bind("General",
                 "FlipInterval",
@@ -63,13 +66,13 @@ namespace AdjustUraFlipTime
             // Patch methods
             _harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
 
-            LoadPlugin();
+            LoadPlugin(ConfigEnabled.Value);
         }
 
 
-        public static void LoadPlugin()
+        public static void LoadPlugin(bool enabled)
         {
-            if (Instance.ConfigEnabled.Value)
+            if (enabled)
             {
                 bool result = true;
                 // If any PatchFile fails, result will become false
