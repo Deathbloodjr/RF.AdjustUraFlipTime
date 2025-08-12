@@ -23,7 +23,12 @@ namespace AdjustUraFlipTime
 
 
         public ConfigEntry<bool> ConfigEnabled;
+
         public ConfigEntry<float> ConfigFlipInterval;
+        public ConfigEntry<float> ConfigSongExpandTime;
+        public ConfigEntry<float> ConfigSongScrollWait;
+        public ConfigEntry<float> ConfigSongMoveTime;
+        public ConfigEntry<float> ConfigSongMoveTimeFast;
 
 
 
@@ -55,10 +60,32 @@ namespace AdjustUraFlipTime
                    "Enables the mod.");
             }
 
-            ConfigFlipInterval = config.Bind("General",
+            ConfigFlipInterval = config.Bind("UraFlip",
                 "FlipInterval",
                 3f,
                 "How quickly the difficulty flips between oni and ura.");
+
+
+
+            ConfigSongExpandTime = config.Bind("Songlist Scroll Speed",
+                "SongExpandTime",
+                0.15f,
+                "How quickly the songs expand and shrink when selecting/deselecting them. Also impacts how long you have to wait before selecting another song. ");
+
+            ConfigSongScrollWait = config.Bind("Songlist Scroll Speed",
+                "SongScrollWait",
+                0.08f,
+                "How long the game waits between scrolling when holding up/down for an extended period of time. In other words, speeds up fast scrolling. ");
+
+            ConfigSongMoveTime = config.Bind("Songlist Scroll Speed",
+                "SongMoveTime",
+                0.3f,
+                "How quickly the game scrolls up/down normally. ");
+
+            ConfigSongMoveTimeFast = config.Bind("Songlist Scroll Speed",
+                "SongMoveTimeFast",
+                0.05f,
+                "How quickly the game scrolls up/down when holding up/down for an extended period of time. ");
         }
 
         private void SetupHarmony()
@@ -77,6 +104,7 @@ namespace AdjustUraFlipTime
                 bool result = true;
                 // If any PatchFile fails, result will become false
                 result &= Instance.PatchFile(typeof(AdjustUraFlipTimePatch));
+                result &= Instance.PatchFile(typeof(SonglistScrollSpeedPatch));
                 if (result)
                 {
                     Logger.Log($"Plugin {MyPluginInfo.PLUGIN_NAME} is loaded!");
