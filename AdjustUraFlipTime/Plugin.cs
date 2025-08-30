@@ -105,6 +105,7 @@ namespace AdjustUraFlipTime
                 // If any PatchFile fails, result will become false
                 result &= Instance.PatchFile(typeof(AdjustUraFlipTimePatch));
                 result &= Instance.PatchFile(typeof(SonglistScrollSpeedPatch));
+                result &= Instance.PatchFile(typeof(ChangeDefaultCoursePatch));
                 if (result)
                 {
                     Logger.Log($"Plugin {MyPluginInfo.PLUGIN_NAME} is loaded!");
