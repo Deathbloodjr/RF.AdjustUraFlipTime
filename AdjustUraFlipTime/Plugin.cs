@@ -25,10 +25,13 @@ namespace AdjustUraFlipTime
         public ConfigEntry<bool> ConfigEnabled;
 
         public ConfigEntry<float> ConfigFlipInterval;
+
         public ConfigEntry<float> ConfigSongExpandTime;
         public ConfigEntry<float> ConfigSongScrollWait;
         public ConfigEntry<float> ConfigSongMoveTime;
         public ConfigEntry<float> ConfigSongMoveTimeFast;
+
+        public ConfigEntry<bool> ConfigPlaylistMoveSpeed;
 
 
 
@@ -86,6 +89,13 @@ namespace AdjustUraFlipTime
                 "SongMoveTimeFast",
                 0.05f,
                 "How quickly the game scrolls up/down when holding up/down for an extended period of time. ");
+
+
+
+            ConfigPlaylistMoveSpeed = config.Bind("Playlist Scroll Speed",
+                "PlaylistMoveSpeed",
+                true,
+                "True will set the playlist move speed to be the fast speed at all times, as if you were holding the button for awhile. ");
         }
 
         private void SetupHarmony()
@@ -107,6 +117,11 @@ namespace AdjustUraFlipTime
                 result &= Instance.PatchFile(typeof(SonglistScrollSpeedPatch));
                 result &= Instance.PatchFile(typeof(ChangeDefaultCoursePatch));
                 result &= Instance.PatchFile(typeof(MyLibraryOrderPatch));
+
+                if (Instance.ConfigPlaylistMoveSpeed.Value)
+                {
+                    result &= Instance.PatchFile(typeof(PlaylistScrollSpeedPatch));
+                }
                 if (result)
                 {
                     Logger.Log($"Plugin {MyPluginInfo.PLUGIN_NAME} is loaded!");

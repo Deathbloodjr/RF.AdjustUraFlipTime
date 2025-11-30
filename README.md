@@ -2,8 +2,6 @@
  A Rhythm Festival mod that adjusts the time to flip between Oni and Ura on the song select menu.\
  This was made to make it easier to tell if a song has an Ura chart, as well as seeing what difficulty the chart is. 
  
-  <a href="https://shorturl.at/0WHMk"> <img src="Resources/InstallButton.png" alt="One-click Install using the Taiko Mod Manager" width="256"/> </a>
-  
 # Requirements
  Visual Studio 2022 or newer\
  Taiko no Tatsujin: Rhythm Festival

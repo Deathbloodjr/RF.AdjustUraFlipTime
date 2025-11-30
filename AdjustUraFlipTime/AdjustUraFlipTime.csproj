@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <ModName>AdjustUraFlipTime</ModName>
-    <ModVersion>1.0.2</ModVersion>
+    <ModVersion>1.0.3</ModVersion>
     <Description>A Rhythm Festival mod to flip between Oni and Ura on the song select screen at different intervals.</Description>
   </PropertyGroup>
   
